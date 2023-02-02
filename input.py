@@ -11,16 +11,28 @@ def data():
       while True:
         try:
           line = input()
+          if line.find('P ') != 0 or line.find('Q ') != 0:
+            print("Invalid data: Data will start with P or Q")
+            return []
         except EOFError:
-          break;
+          break
         contents.append(line)
     case '2':
       lines = open("sample_input_data.txt", "r")
       contents = lines.read().split('\n')
       return [contents, 8]
+    case other:
+      print("Invalid input")
+      return []
 
   print("Enter maximum keywords:")
-  return [contents, int(input())]
+  try:
+    n = int(input())
+  except ValueError:
+    print("you need to enter only interger")
+    return []
+
+  return [contents, n]
   
 
 def pages(contents, page_memo = []):
